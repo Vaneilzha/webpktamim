@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Literasi Digital Melawan Hoax</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #546e7a 0%, #607d8b 50%, #78909c 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .hero-image {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            min-width: 300px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-image h2 {
+            color: #1565c0;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .hero-image h3 {
+            color: #d32f2f;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .person-icon {
+            width: 80px;
+            height: 100px;
+            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+            border-radius: 40px 40px 20px 20px;
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .person-icon::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 25px;
+            background: #ffdbcb;
+            border-radius: 50%;
+        }
+
+        .hoax-elements {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hoax-box {
+            background: #f44336;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .hoax-box::after {
+            content: '✗';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 16px;
+        }
+
+        .verify-icon {
+            background: #4caf50;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .hero-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-content h2 {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 16px;
+            text-align: justify;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .content-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 16px;
+            text-align: justify;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Action Section */
+        .action-title {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 50px 0 40px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-style: italic;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 28px;
+        }
+
+        .action-card h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .action-card p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Conclusion Section */
+        .conclusion {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .conclusion h2 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .conclusion p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 16px;
+            text-align: justify;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+            }
+
+            .hero-image {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-title {
+                font-size: 28px;
+            }
+
+            .hero-content h2 {
+                font-size: 24px;
+            }
+        }
+
+        /* Animation */
+        .action-card {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .action-card:nth-child(1) { animation-delay: 0.1s; }
+        .action-card:nth-child(2) { animation-delay: 0.2s; }
+        .action-card:nth-child(3) { animation-delay: 0.3s; }
+        .action-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-image">
+                <h2>LITERASI DIGITAL</h2>
+                <h3>MELAWAN HOAX</h3>
+                <div class="illustration">
+                    <div class="person-icon"></div>
+                    <div class="hoax-elements">
+                        <div class="hoax-box">HOAX</div>
+                        <div class="verify-icon">✓</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <h2>TAU GAK SIH?</h2>
+                <p>
+                    literasi digital adalah fondasi penting untuk melawan penyebaran hoaks 
+                    karena meningkatkan kemampuan individu untuk menyaring dan 
+                    memverifikasi informasi secara kritis, seperti "swasensor" atau verifikasi 
+                    fakta. Teks tersebut berpendapat bahwa peningkatan literasi digital akan 
+                    mengurangi penyebaran hoaks dengan membekali masyarakat kemampuan 
+                    untuk tidak mudah terprovokasi, mengenali sumber tidak terpercaya, dan 
+                    menghindari bias konfirmasi.
+                </p>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+            <p>
+                Selain itu, literasi digital juga mendorong masyarakat untuk lebih bijak dalam menggunakan media sosial, bukan 
+                hanya sebagai konsumen informasi, tetapi juga sebagai produser konten. Dengan kemampuan literasi digital yang 
+                baik, individu dapat memahami etika berkomunikasi di ruang digital, menghargai keberagaman pendapat, serta 
+                menghindari ujaran kebencian. Hal ini akan menciptakan ekosistem digital yang lebih sehat dan produktif.
+            </p>
+            <p>
+                literasi digital juga bukan sekadar keterampilan teknis, tetapi juga mencakup kesadaran kritis terhadap dampak 
+                sosial, politik, dan budaya dari informasi yang dikonsumsi dan dibagikan. Dengan demikian, literasi digital 
+                berperan strategis dalam membentuk masyarakat yang cerdas, kritis, dan bertanggung jawab, sehingga mampu 
+                menangkal hoaks dan menjaga kualitas demokrasi di era informasi.
+            </p>
+        </div>
+
+        <!-- Action Section -->
+        <h2 class="action-title">AKSI NYATANYA SEPERTI APA SIH?</h2>
+        
+        <div class="action-grid">
+            <div class="action-card">
+                <div class="action-icon">📋</div>
+                <h3>Mengecek Fakta</h3>
+                <p>
+                    Selalu memverifikasi berita 
+                    melalui sumber resmi, seperti 
+                    media kredibel atau pemerintah, 
+                    dan cek berbagai sumber fakta.
+                </p>
+            </div>
+            
+            <div class="action-card">
+                <div class="action-icon">🤔</div>
+                <h3>Berpikir Kritis</h3>
+                <p>
+                    Tidak langsung percaya atau 
+                    menyebarkan informasi yang 
+                    belum jelas kebenarannya. 
+                    Teruskan jika judulnya 
+                    provokatif atau emosional.
+                </p>
+            </div>
+            
+            <div class="action-card">
+                <div class="action-icon">✗</div>
+                <h3>Menyebarkan Informasi Positif</h3>
+                <p>
+                    Tidak langsung percaya atau 
+                    menyebarkan informasi yang 
+                    belum jelas kebenarannya, 
+                    terutama jika judulnya 
+                    provokatif atau emosional.
+                </p>
+            </div>
+            
+            <div class="action-card">
+                <div class="action-icon">📢</div>
+                <h3>Melaporkan Konten Hoax</h3>
+                <p>
+                    Tidak langsung percaya atau 
+                    menyebarkan informasi yang 
+                    belum jelas kebenarannya. 
+                    Report di media sosial atau 
+                    melaporkan ke pihak berwenang 
+                    ketika menemukan hoax 
+                    dilakukan emosional.
+                </p>
+            </div>
+        </div>
+
+        <!-- Conclusion Section -->
+        <div class="conclusion">
+            <h2>KESIMPULAN</h2>
+            <p>
+                Dapat disimpulkan bahwa literasi digital memiliki peran yang sangat penting dalam upaya melawan penyebaran 
+                hoaks. Dengan kemampuan untuk menyaring, memverifikasi, dan memahami informasi secara kritis, masyarakat 
+                tidak mudah terprovokasi oleh berita palsu maupun sumber yang tidak dapat dipercaya. Literasi digital juga 
+                membekali individu untuk lebih bijak dalam menggunakan media sosial, sehingga tercipta ruang digital yang sehat, 
+                aman, dan produktif.
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
